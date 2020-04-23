@@ -1,0 +1,119 @@
+x=[1 2 3 4];
+D_M=1; %in mg 
+D_D=30; %in mg
+CL_plasma_D=[98.8 86.5 67.1 90];%ml/min
+CL_plasma_Codeine_6_Gluc=[111 160 158 85.8];%ml/min
+mtop=(D_M./CL_plasma_Codeine_6_Gluc).*(CL_plasma_D./D_D);
+mtopaverage=sum(mtop)/4;
+meand=mean(CL_plasma_D);
+meanm=mean(CL_plasma_Codeine_6_Gluc);
+
+s1=['The ratio of metabolite-to-parent drug of Codeine-6-Glucuronide of females ',num2str(mtop),'.'];
+disp(s1)
+figure(1)
+bar(x,mtop)
+title('The ratio of metabolite-to-parent drug of Codeine-6-Glucuronide of females vs males')
+xlabel('Subject')
+ylabel('MtoP Ratio')
+
+CL_plasma_Morphine_3_gluc=[42.1 65.4 71.9 78.9];%ml/min
+mtop1=(D_M./CL_plasma_Morphine_3_gluc).*(CL_plasma_D./D_D);
+mtopaverage1=sum(mtop1)/4;
+s2=['The ratio of metabolite-to-parent drug of Morphine-3-Glucuronide of females ',num2str(mtop),'.'];
+disp(s2)
+meanmorphine=mean(CL_plasma_Morphine_3_gluc);
+figure(2)
+bar(x,mtop1)
+title('The ratio of metabolite-to-parent drug of Morphine-3-Glucuronide of females')
+xlabel('Subject')
+ylabel('MtoP Ratio')
+
+D_MM=1; %in mg but have not found it yet
+D_DM=30; %in mg
+CL_plasma_DM=[154 72.2 116 65.6];%ml/min
+CL_plasma_Codeine_6_GlucM=[85.8 142 169 114];%ml/min
+mtopm=(D_MM./CL_plasma_Codeine_6_GlucM).*(CL_plasma_DM./D_DM);
+mtopaverageM=sum(mtopm)/4;
+meandm=mean(CL_plasma_DM);
+meanmm=mean(CL_plasma_Codeine_6_GlucM);
+
+title('Average clearance Codeine and Codeine-6-Glucuronide in females ')
+xlabel('Minutes')
+ylabel('Clearance mL')
+s3=['The ratio of metabolite-to-parent drug of Codeine-6-Glucuronide of males ',num2str(mtopm),'.'];
+disp(s3)
+figure(3)
+bar(x,mtopm)
+title('The ratio of metabolite-to-parent drug of Codeine-6-Glucuronide of males')
+xlabel('Subject')
+ylabel('MtoP Ratio')
+
+CL_plasma_Morphine_3_glucM=[35.2 62.9 62.9 84.1];%ml/min % fill 2 blank spots with the average
+mtop1M=(D_MM./CL_plasma_Morphine_3_glucM).*(CL_plasma_DM./D_DM);
+mtopaverage1M=sum(mtop1M)/4;
+s4=['The ratio of metabolite-to-parent drug of Morphine-3-Glucuronide of males ',num2str(mtop1M),'.'];
+disp(s4)
+xxy=mean(CL_plasma_Morphine_3_glucM);
+
+
+figure(4)
+bar(x,mtop1M)
+title('The ratio of metabolite-to-parent drug of Morphine-3-Glucuronide of males')
+xlabel('Subject')
+ylabel('MtoP Ratio')
+
+
+x1=0:1:12
+%Linear comparison Codeine 
+figure(5)
+y1=(meand/60)*(x1)
+y3=(meandm/60)*(x1)
+plot(x1,y1,x1,y3)
+title('Average clearance Codeine in females vs males ')
+xlabel('hours')
+ylabel('Clearance mL')
+legend({'females','males'},'Location','southwest')
+
+%Linear comparison Codeine-6-Glucuronide
+figure(6)
+y2=(meanm/60)*(x1)
+y4=(meanmm/60)*(x1)
+plot(x1,y2,x1,y4)
+title('Average clearance Codeine-6-Glucuronide in females vs males ')
+xlabel('hours')
+ylabel('Clearance mL')
+legend({'females','males'},'Location','southwest')
+
+%Linear comparison Morphine-3-glucuronide
+figure(7)
+y6=(meanmorphine/60)*(x1)
+y7=(xxy/60)*(x1)
+plot(x1,y6,x1,y7)
+title('Average clearance Morphine-3-Glucuronide in females vs males ')
+xlabel('hours')
+ylabel('Clearance mL')
+legend({'females','males'},'Location','southwest')
+
+%Codeine clearance comparison
+figure(8)
+y=[98.8 86.5 67.1 90;154 72.2 116 65.6]
+bar(y)
+title('Clearance Codeine in females vs males ')
+xlabel('Females vs. Males')
+ylabel('Clearance mL/min')
+
+%Codeine-6-glucuronide clearance comparison
+figure(9)
+y5=[111 160 158 85.8;85.8 142 169 114]
+bar(y5)
+title('Clearance Codeine-6-Glucuronide in females vs males ')
+xlabel('Females vs Males')
+ylabel('Clearance mL/min')
+
+%Morphine-3-glucuronide clearance comparison
+figure(10)
+y7=[42.1 65.4 71.9 78.9;35.2 62.9 62.9 84.1]
+bar(y7)
+title('Clearance Morphine-3-glucuronide in females vs males ')
+xlabel('Females vs.Males')
+ylabel('Clearance mL/min')
